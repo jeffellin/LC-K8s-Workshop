@@ -1,10 +1,10 @@
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
 metadata:
-  name: lab-markdown-sample
+  name: kubernetes-basics
 spec:
   vendor: learningcenter.tanzu.vmware.com
-  title: Markdown Sample
+  title: Kubernetes Basics
   description: A sample workshop using Markdown
   url: https://github.com/jeffellin/LC-K8s-Workshop
   content:

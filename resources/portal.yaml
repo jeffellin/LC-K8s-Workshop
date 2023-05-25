@@ -7,7 +7,7 @@ spec:
     registration:
       type: anonymous
   workshops:
-  - name: lab-markdown-sample
+  - name: kubernetes-basics
     capacity: 1
     expires: 60m
     orphaned: 5m
