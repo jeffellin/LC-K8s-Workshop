@@ -8,7 +8,7 @@ spec:
   description: A sample workshop using Markdown
   url: https://github.com/jeffellin/LC-K8s-Workshop
   content:
-    files: https://github.com/jeffellin/LC-K8s-Workshop
+    files: github.com/jeffellin/LC-K8s-Workshop
   duration: 15m
   session:
     namespaces:
