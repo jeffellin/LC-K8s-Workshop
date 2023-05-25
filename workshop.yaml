@@ -6,9 +6,9 @@ spec:
   vendor: learningcenter.tanzu.vmware.com
   title: Markdown Sample
   description: A sample workshop using Markdown
-  url: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
+  url: https://github.com/jeffellin/LC-K8s-Workshop
   content:
-    files: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
+    files: https://github.com/jeffellin/LC-K8s-Workshop
   duration: 15m
   session:
     namespaces:
