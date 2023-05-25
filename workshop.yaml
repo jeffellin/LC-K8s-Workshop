@@ -1,0 +1,20 @@
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: Workshop
+metadata:
+  name: lab-markdown-sample
+spec:
+  vendor: learningcenter.tanzu.vmware.com
+  title: Markdown Sample
+  description: A sample workshop using Markdown
+  url: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
+  content:
+    files: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
+  duration: 15m
+  session:
+    namespaces:
+      budget: small
+    applications:
+      console:
+        enabled: true
+      editor:
+        enabled: true
