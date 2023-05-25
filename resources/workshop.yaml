@@ -3,15 +3,15 @@ kind: Workshop
 metadata:
   name: lab-markdown-sample
 spec:
-  title: Markdown Sample
+  title: Foo Test2 
   description: A sample workshop using Markdown
   vendor: eduk8s.io
   difficulty: beginner
   duration: 15m
-  url: https://github.com/eduk8s/lab-markdown-sample
+  url: https://github.com/jeffellin/LC-K8s-Workshop
   content:
     #image: quay.io/eduk8s/lab-markdown-sample:master
-    files: github.com/eduk8s/lab-markdown-sample
+    files: https://github.com/jeffellin/LC-K8s-Workshop
   session:
     namespaces:
       budget: small
