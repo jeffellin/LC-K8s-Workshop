@@ -1,13 +1,13 @@
-apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:
-  name: bootcamps
+  name: lab-markdown-sample
 spec:
   portal:
     registration:
       type: anonymous
   workshops:
-  - name: kubernetes-basics
+  - name: lab-markdown-sample
     capacity: 1
     expires: 60m
     orphaned: 5m

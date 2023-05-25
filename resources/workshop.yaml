@@ -1,19 +1,24 @@
-apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
-  name: kubernetes-basics
+  name: lab-markdown-sample
 spec:
-  vendor: learningcenter.tanzu.vmware.com
-  title: Kubernetes Basics
+  title: Markdown Sample
   description: A sample workshop using Markdown
-  url: https://github.com/jeffellin/LC-K8s-Workshop
-  content:
-    files: github.com/jeffellin/LC-K8s-Workshop
+  vendor: eduk8s.io
+  difficulty: beginner
   duration: 15m
+  url: https://github.com/eduk8s/lab-markdown-sample
+  content:
+    #image: quay.io/eduk8s/lab-markdown-sample:master
+    files: github.com/eduk8s/lab-markdown-sample
   session:
     namespaces:
       budget: small
     applications:
+      terminal:
+        enabled: true
+        layout: split
       console:
         enabled: true
       editor:
