@@ -6,10 +6,13 @@ modules:
     workshop-virtualmachines:
         name: Containers vs Virtual Machines
     workshop-containers:
-        name: Containers vs Virtual Machines
+        name: Containers vs Virtual Machines2
     workshop-vocabulary:
+        name: Vocab
     workshop-runcontainer:
+        name: Running Container
     workshop-buildcontainer:
+        name: Build Container
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop
