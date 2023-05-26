@@ -3,6 +3,8 @@ modules:
         name: Workshop Overview
     workshop-whatisdocker:
         name:  What is a Container...
+    workshop-virtualmachines:
+        name: Containers vs Virtual Machines
     setup-environment:
         name: Setup Environment
         exit_sign: Start Workshop
