@@ -8,3 +8,4 @@ modules:
     - workshop-containers
     - workshop-vocabulary
     - workshop-runcontainer
+    - workshop-buildcontainer
