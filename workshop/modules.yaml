@@ -1,7 +1,8 @@
 modules:
     workshop-overview:
         name: Workshop Overview
-        exit_sign: Setup Environment
+    workshop-whatisdocker:
+        name:  What is a Container...
     setup-environment:
         name: Setup Environment
         exit_sign: Start Workshop
