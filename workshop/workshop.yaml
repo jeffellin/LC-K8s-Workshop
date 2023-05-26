@@ -5,3 +5,6 @@ modules:
     - workshop-overview
     - workshop-whatisdocker
     - workshop-virtualmachines
+    - workshop-containers
+    - workshop-vocabulary
+    - workshop-runcontainer
