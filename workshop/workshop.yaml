@@ -4,3 +4,4 @@ modules:
     activate:
     - workshop-overview
     - workshop-whatisdocker
+    - workshop-virtualmachines
