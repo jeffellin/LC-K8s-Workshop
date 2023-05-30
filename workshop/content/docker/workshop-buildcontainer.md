@@ -51,10 +51,10 @@ cd ~/exercises/flask-docker
 ```
 
 ```execute-1
-docker build -n "flask-docker"
+docker build -t flask-docker
 ```
 ```execute-1
-docker run -P 8080:5000 "flask-docker"
+docker run -p 8080:5000 flask-docker
 ```
 
 

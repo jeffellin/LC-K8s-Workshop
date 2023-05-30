@@ -45,3 +45,11 @@ CMD ["java", "-jar" "server.jar" ,"server", "app-settings.yml"]
 ```
 
 This file defines a container image that utilizes a specific version of Java. When the container is built, the commands in the Dockerfile are executed and cached. When running the container only, the CMD line is run resulting in near instantaneous startup.
+
+<details>
+  <summary>Not sure how?</summary>
+
+```
+kubectl logs whoami
+```
+</details><br/>
