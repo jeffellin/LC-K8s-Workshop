@@ -7,7 +7,7 @@ modules:
         name: Containers vs Virtual Machines2
     docker/workshop-runningcontainer:
         name: Running your first Container
-    docker/buildcontainer:
+    docker/workshop-buildcontainer:
         name: Building your first Container
     workshop-runcontainer:
         name: Running Container
