@@ -8,3 +8,4 @@ modules:
     - docker/workshop-runningcontainer
     - docker/workshop-buildcontainer
     - workshop-runcontainer
+    - kubernetes/workshop-pods

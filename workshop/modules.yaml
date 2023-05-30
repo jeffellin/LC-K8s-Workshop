@@ -13,6 +13,8 @@ modules:
         name: Running Container
     workshop-buildcontainer:
         name: Build Container
+    kubernetes/workshop-pods:
+        name: Build Container
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop
