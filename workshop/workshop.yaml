@@ -3,9 +3,8 @@ name: Markdown Sample
 modules:
     activate:
     - workshop-overview
-    - workshop-whatisdocker
-    - workshop-virtualmachines
-    - workshop-containers
-    - workshop-vocabulary
+    - docker/workshop-whatisdocker
+    - docker/workshop-containers
+    - docker/workshop-runningcontainer
+    - docker/buildcontainer
     - workshop-runcontainer
-    - workshop-buildcontainer

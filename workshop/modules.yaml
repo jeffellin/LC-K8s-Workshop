@@ -1,14 +1,14 @@
 modules:
     workshop-overview:
         name: Workshop Overview
-    workshop-whatisdocker:
+    docker/workshop-whatisdocker:
         name:  What is a Container...
-    workshop-virtualmachines:
-        name: Containers vs Virtual Machines
-    workshop-containers:
+    docker/workshop-containers:
         name: Containers vs Virtual Machines2
-    workshop-vocabulary:
-        name: Vocab
+    docker/workshop-runningcontainer:
+        name: Running your first Container
+    docker/buildcontainer:
+        name: Building your first Container
     workshop-runcontainer:
         name: Running Container
     workshop-buildcontainer:
