@@ -13,4 +13,7 @@ RUN pip install -r requirements.txt
 # copy every content from the local file to the image
 COPY . /app
 
+#allow port 5000 to be mapped into the container
+EXPOSE 5000
+
 CMD ["python", "app.py" ]
