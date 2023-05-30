@@ -9,3 +9,4 @@ modules:
     - docker/workshop-buildcontainer
     - workshop-runcontainer
     - kubernetes/workshop-pods
+    - kubernetes/workshop-pv
