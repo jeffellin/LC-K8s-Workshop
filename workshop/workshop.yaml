@@ -6,5 +6,5 @@ modules:
     - docker/workshop-whatisdocker
     - docker/workshop-containers
     - docker/workshop-runningcontainer
-    - docker/buildcontainer
+    - docker/workshop-buildcontainer
     - workshop-runcontainer
