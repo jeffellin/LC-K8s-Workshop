@@ -10,7 +10,7 @@ set +e
   curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
   tar zxvf "${KREW}.tar.gz" &&
   ./"${KREW}" install krew
-)
+) 
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
