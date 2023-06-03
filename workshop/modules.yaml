@@ -15,7 +15,7 @@ modules:
         name: Pods
     kubernetes/workshop-pv:
         name: Persistant Storage
-    kuberenetes/workshop-configmaps:
+    kubernetes/workshop-configmaps:
         name: External Configuration
     kubernetes/whatisk8s:
         name: What is Kubernetes
