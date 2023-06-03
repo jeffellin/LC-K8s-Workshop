@@ -1,22 +1,35 @@
 modules:
     workshop-overview:
         name: Workshop Overview
-    docker/workshop-whatisdocker:
-        name:  What is a Container...
+    workshop-whatiscontainers:
+        name: What is a Container...
+    workshop-virtualmachines:
+        name: What is a Virtual Machine...
     docker/workshop-containers:
-        name: Containers vs Virtual Machines2
+        name: What is a Docker Container
     docker/workshop-runningcontainer:
         name: Running your first Container
     docker/workshop-buildcontainer:
         name: Building your first Container
-    workshop-runcontainer:
-        name: Running Container
-    workshop-buildcontainer:
-        name: Build Container
     kubernetes/workshop-pods:
-        name: Build Container
+        name: Pods
     kubernetes/workshop-pv:
         name: Persistant Storage
+    kuberenetes/workshop-configmaps:
+        name: External Configuration
+    kubernetes/whatisk8s:
+        name: What is Kubernetes
+    kubernetes/core-concepts:
+        name: Core Concepts
+    kubernetes/workshop-vocabulary:
+        name: Vocabulary
+    kubernetes/commands:
+        name: Commands
+    kubernetes/workshop-services:
+        name: Services
+    kubernetes/workshop-troubleshooting:
+        name: Troubleshooting
+
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop

@@ -1,13 +1,3 @@
-## In the Beginning
-
-Back in the early 2000s it was very common when a developer wanted to stand up a new environment they would start with a bare VM, sometimes if they were lucky it would have their desired operating system installed.  From there they would need to add in an application server, a database driver and a myriad of other tools that may be required to run their application.  Finally they could deploy their application.
-
-This manual configuration resulted in what the community called a snowflake.   Due to all the manual install steps no two were ever exactly alike.
-
-## An Improvement
-
-Virtual Machines were a slight improvement because they allowed the development team to supply an "image" of their running environment. This image could be used to replicate a copy of the machine as many times as needed.   Unfortunately this still led to snowflakes because over time a developer would make a change to the machine to fix and issue and eventually would lead to to the "it works on my machine syndrome"
-
 ## Infrastructure as Code
 
 Modern software applications have become much more complex, In many cases, applications have many different tiers such as database, web, service, messaging, etc. The popularity of micro services has further multiplied the number of pieces within a production solution.
@@ -46,10 +36,4 @@ CMD ["java", "-jar" "server.jar" ,"server", "app-settings.yml"]
 
 This file defines a container image that utilizes a specific version of Java. When the container is built, the commands in the Dockerfile are executed and cached. When running the container only, the CMD line is run resulting in near instantaneous startup.
 
-<details>
-  <summary>Not sure how?</summary>
-
-```
-kubectl logs whoami
-```
-</details><br/>
+JM

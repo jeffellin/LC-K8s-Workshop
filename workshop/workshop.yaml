@@ -3,10 +3,19 @@ name: Markdown Sample
 modules:
     activate:
     - workshop-overview
-    - docker/workshop-whatisdocker
+    - workshop-whatiscontainers
+    - workshop-virtualmachines
     - docker/workshop-containers
     - docker/workshop-runningcontainer
     - docker/workshop-buildcontainer
-    - workshop-runcontainer
+    - kubernetes/whatisk8s
+    - kubernetes/core-concepts
+    - kubernetes/workshop-vocabulary
+    - kubernetes/commands
     - kubernetes/workshop-pods
     - kubernetes/workshop-pv
+    - kuberenetes/workshop-configmaps
+    - kubernetes/workshop-services
+    - kubernetes/workshop-troubleshooting
+
+    - workshop-summary

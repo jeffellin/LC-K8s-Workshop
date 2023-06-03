@@ -4,6 +4,11 @@ The [Pod](https://kubernetes.io/docs/concepts/workloads/pods/) is the basic unit
 
 Pod specs are very simple. The minimal YAML needs some metadata, and the name of the container image to run.
 
+Containers within a pod share an IP address and port space, and can find each other via localhost
+Containers in a Pod also share the same data volumes
+Pods are considered to be ephemeral
+
+
 
 ## API specs
 
@@ -60,13 +65,14 @@ kubectl apply -f ~/exercises/labs/pods/whoami-pod.yaml
 ```
 
 
-> The output shows you what objects have changed. Kubernetes works on **desired state** deployment
+> The output shows you what objects have changed. 
 
 Now you can use the familiar commands to print information:
 
-```
+```execute-1
 kubectl get pods
-
+```
+```execute-1
 kubectl get po -o wide
 ```
 
@@ -74,6 +80,13 @@ kubectl get po -o wide
 
 What extra information do you see in the second output, and how would you print all the Pod information in a readble format?
 
+<details>
+  <summary>Not sure how?</summary>
+
+```
+kubectl describe pod <podname>
+```
+</details><br/>
 
 ## Working with Pods
 
@@ -105,14 +118,15 @@ file: ~/exercises/labs/pods/whoami-pod.yaml
 ```
 - [sleep-pod.yaml](specs/sleep-pod.yaml) runs an app which does nothing
 
-📋 Deploy the new app from `labs/pods/specs/sleep-pod.yaml` and check it is running.
+📋 Deploy the new app from `labs/pods/specs/sleep-pod.yaml` and check if it is running.
 
 <details>
   <summary>Not sure how?</summary>
 
 ```execute-1
 kubectl apply -f labs/pods/specs/sleep-pod.yaml
-
+```
+```execute-1
 kubectl get pods
 ```
 </details><br/>
@@ -127,20 +141,11 @@ Now you're connected inside the container; you can explore the container environ
 
 ```execute-1
 hostname
-
-whoami
 ```
-
-And the Kubernetes network:
 
 ```execute-1
-nslookup kubernetes
-
-# this will fail:
-ping kubernetes
+whoami
 ```
-
-> The Kubernetes API server is available for Pod containers to use, but internal addresses don't support ping
 
 ## Connecting from one Pod to another
 
@@ -155,7 +160,7 @@ exit
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl get pods -o wide whoami
 ```
 </details><br/>
@@ -164,7 +169,7 @@ kubectl get pods -o wide whoami
 
 Make a request to the HTTP server in the whoami Pod from the sleep Pod:
 
-```
+```execute-1
 kubectl exec sleep -- curl -s <whoami-pod-ip>
 ```
 
