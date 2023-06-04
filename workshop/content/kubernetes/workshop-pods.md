@@ -185,10 +185,9 @@ You can see this in action with a badly-configured app, where the container keep
 
 Kubernetes will keep trying to make the Pod work, so you'll want to remove it when you're done.
 
-> Stuck? Try [pod-hints](pod-hints.md) or check the [pod-solution](pod-solution.md).
 
 <details>
-  <summary>Need a Hint?/summary>
+  <summary>Need a Hint?</summary>
 
 Pod specs are pretty simple - you don't need any more in your YAML than we've already used in the exercises folder from this lab.
 
@@ -203,6 +202,6 @@ ___
 
 We'll clean up before we move on, deleting all the Pods we created:
 
-```
+```execute-1
 kubectl delete pod sleep whoami sleep-lab
 ```
