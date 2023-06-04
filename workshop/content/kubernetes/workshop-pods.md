@@ -135,7 +135,7 @@ kubectl get pods
 
 This Pod container does have a shell, and it has some useful tools installed.
 
-```
+```execute-1
 kubectl exec -it sleep -- sh
 ```
 
@@ -187,6 +187,16 @@ Kubernetes will keep trying to make the Pod work, so you'll want to remove it wh
 
 > Stuck? Try [pod-hints](pod-hints.md) or check the [pod-solution](pod-solution.md).
 
+<details>
+  <summary>Need a Hint?/summary>
+
+Pod specs are pretty simple - you don't need any more in your YAML than we've already used in the exercises folder from this lab.
+
+When you run your Pod it should start and go into the running state, but because the application is misconfured, it won't keep running.
+
+After you've seen the lifecycle of the Pod, you can use Kubectl to delete it.
+
+</details><br/>
 
 ___
 ## Cleanup
