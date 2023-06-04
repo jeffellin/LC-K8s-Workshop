@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: pi-web-internal
+            name: pi-proxy
             port:
               number: 80
         path: /

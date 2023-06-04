@@ -149,7 +149,7 @@ You can create a PersistentVolumeClaim with a named StorageClass, or omit the cl
 - [caching-proxy-pvc/pvc.yaml](specs/caching-proxy-pvc/pvc.yaml) requests 100MB of storage, which a single node can mount for read-write access
 
 ```execute-1
-kubectl apply -f labs/persistentvolumes/specs/caching-proxy-pvc/pvc.yaml
+kubectl apply -f ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
 ```
 
 Each StorageClass has a provisioner which can create the storage unit on-demand.
@@ -162,8 +162,11 @@ Each StorageClass has a provisioner which can create the storage unit on-demand.
 
 ```execute-1
 kubectl get pvc
+```
+Let's see why it is still in a pending state.
 
-kubectl get persistentvolumes
+```execute-1
+kubectl describe pvc pi-proxy-pvc
 ```
 
 > Some provisioners create storage as soon as the PVC is created - others wait for the PVC to be claimed by a Pod
@@ -174,11 +177,11 @@ kubectl get persistentvolumes
 This [Deployment spec](specs/caching-proxy-pvc/nginx.yaml) updates the Nginx proxy to use the PVC:
 
 ```
-kubectl apply -f labs/persistentvolumes/specs/caching-proxy-pvc/
+kubectl apply -f ~/exercises/labs/pvc/caching-proxy-pvc/
 
 kubectl wait --for=condition=Ready pod -l app=pi-proxy,storage=pvc
 
-kubectl get pvc,pv
+kubectl get pvc
 ```
 
 > Now the PVC is bound and the PersistentVolume exists with the requested size and access mode in the PVC
