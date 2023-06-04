@@ -52,15 +52,16 @@ The format of the `spec` field is different for every object type. For Pods, thi
 Kubectl is the tool for managing objects. You create any object from YAML using the `apply` command.
 
 
-```editor:select-matching-text
+```editor:open-file
 file: ~/exercises/labs/pods/whoami-pod.yaml
 ```
+
 is the Pod spec for a simple web app
 
 
 Deploy the app from your local copy of the course repo:
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/pods/whoami-pod.yaml
 ```
 
@@ -113,12 +114,12 @@ kubectl exec -it whoami -- sh
 
 Let's try another app:
 
-```editor:select-matching-text
+```editor:open-file
 file: ~/exercises/labs/pods/whoami-pod.yaml
 ```
 - [sleep-pod.yaml](specs/sleep-pod.yaml) runs an app which does nothing
 
-📋 Deploy the new app from `labs/pods/specs/sleep-pod.yaml` and check if it is running.
+📋 Deploy the new app from `exercises/labs/pods/sleep-pod.yaml` and check if it is running.
 
 <details>
   <summary>Not sure how?</summary>
