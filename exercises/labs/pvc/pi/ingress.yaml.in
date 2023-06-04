@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: pi.{SESSION_NAME}.${INGRESS_DOMAIN}
+  - host: pi.${SESSION_NAME}.${INGRESS_DOMAIN}
     http:
       paths:
       - backend:
