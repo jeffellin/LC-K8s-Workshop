@@ -35,16 +35,17 @@ text: "COPY . /app"
 before: 1
 after: 1
 ```
-This uses pip to install the required files.
 
+copy contents of working directory into container
 
 ```editor:select-matching-text
 file: ~/exercises/flask-docker/Dockerfile
-text: "CMD ["python", "app.py" ]"
+text: "CMD"
 before: 1
 after: 1
 ```
-This uses pip to install the required files.
+The `CMD` line tells the container what process to launch when running the container
+
 
 ```execute
 cd ~/exercises/flask-docker
@@ -60,8 +61,4 @@ docker run -p 8080:5000 flask-docker
 
 ```execute-2
 curl http://localhost:8080
-```
-
-```terminal:input
-text: password
 ```

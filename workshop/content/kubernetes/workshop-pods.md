@@ -53,7 +53,7 @@ Kubectl is the tool for managing objects. You create any object from YAML using 
 
 
 ```editor:open-file
-file: ~/exercises/labs/pods/whoami-pod.yaml
+file: "~/exercises/labs/pods/whoami-pod.yaml"
 ```
 
 is the Pod spec for a simple web app
@@ -115,9 +115,10 @@ kubectl exec -it whoami -- sh
 Let's try another app:
 
 ```editor:open-file
-file: ~/exercises/labs/pods/whoami-pod.yaml
+file: ~/exercises/labs/pods/sleep-pod.yaml
 ```
-- [sleep-pod.yaml](specs/sleep-pod.yaml) runs an app which does nothing
+
+runs an app which does nothing
 
 📋 Deploy the new app from `exercises/labs/pods/sleep-pod.yaml` and check if it is running.
 
@@ -125,7 +126,7 @@ file: ~/exercises/labs/pods/whoami-pod.yaml
   <summary>Not sure how?</summary>
 
 ```execute-1
-kubectl apply -f labs/pods/specs/sleep-pod.yaml
+kubectl apply -f ~/exercises/labs/pods/sleep-pod.yaml
 ```
 ```execute-1
 kubectl get pods
@@ -184,7 +185,7 @@ You can see this in action with a badly-configured app, where the container keep
 
 Kubernetes will keep trying to make the Pod work, so you'll want to remove it when you're done.
 
-> Stuck? Try [hints](hints.md) or check the [solution](solution.md).
+> Stuck? Try [pod-hints](pod-hints.md) or check the [pod-solution](pod-solution.md).
 
 
 ___
