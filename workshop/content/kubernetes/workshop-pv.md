@@ -59,6 +59,16 @@ Deploy and try the app:
 kubectl apply -f ~/exercises/labs/pvc/pi
 ```
 
+
+```dashboard:create-dashboard
+name: Pi
+prefix: Console
+title: List pods in namespace {{session_namespace}}
+url: http://pi.{SESSION_NAME}.{INGRESS_DOMAIN}
+description: ""
+```
+
+
 > Browse to http://localhost:30010/pi?dp=30000 or http://localhost:8010/pi?dp=30000 you'll see it takes over a second to calculate the response and send it
 
 ```
