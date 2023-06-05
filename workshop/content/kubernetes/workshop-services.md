@@ -120,7 +120,7 @@ The Service has its own IP address, and that is static for the life of the Servi
 Kubernetes runs a DNS server inside the cluster and every Service gets an entry, linking the IP address to the Service name.
 
 ```
-kubectl exec sleep -- nslookup nslookup whoami.{{session_namespace}}.svc.cluster.local
+kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
 ```
 
 > This gets the IP address of the Service from its DNS name. The first line is the IP address of the Kuberentes DNS server itself.
@@ -189,7 +189,7 @@ An Ingress may be configured to give Services externally-reachable URLs, load ba
 
 ## Deploy an external Service
 
-There are two Service definitions to make the whoami app available outside the cluster:
+The following ingress routes all traffic destined for the specified hostname to be routed to the `whoami` service.
 
 ```editor:open-file
 file: ~/exercises/labs/services/specs/ingress/ingress.yaml
@@ -211,6 +211,16 @@ kubectl get ing  whoami-ingress
 ```
 </details><br/>
 
+📋 Curl the new endpoint for the ingress.
+
+<details>
+  <summary>Not sure how?</summary>
+
+```
+curl -s http://whoami.{{session_namespace}}.{{ingress_domain}}
+```
+</details><br/>
+
 ## Lab
 
 Services are a networking abstraction - they're like routers which listen for incoming traffic and direct it to Pods.
@@ -224,7 +234,7 @@ Create new Services and whoami Pods to test these scenarios:
 
 What happens? How can you find the target Pods for a Service?
 
-> Stuck? Try [hints](exercises/labs/services/solution/hints.md) or check the [solution](exercises/labs/services/solution/solution.md).
+> Stuck? Try <a href="exercises/labs/services/solution/hints.md" target="_blank">hints</a> or check the [solution](exercises/labs/services/solution/solution.md).
 
 ___
 ## Cleanup
