@@ -4,6 +4,8 @@ metadata:
   name: whoami-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    kubernetes.courselabs.co: services
 spec:
   rules:
   - host: whoami.${SESSION_NAMESPACE}.${INGRESS_DOMAIN}

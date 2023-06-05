@@ -81,7 +81,7 @@ kubectl get pods -o wide --show-labels
 The Pod name has no affect on networking, Pods can't find each other by name:
 
 ```
-kubectl exec sleep -- nslookup whoami.{{session_name}}.svc.cluster.local
+kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
 ```
 
 ## Deploy an internal Service
@@ -120,7 +120,7 @@ The Service has its own IP address, and that is static for the life of the Servi
 Kubernetes runs a DNS server inside the cluster and every Service gets an entry, linking the IP address to the Service name.
 
 ```
-kubectl exec sleep -- nslookup nslookup whoami.{{session_name}}.svc.cluster.local
+kubectl exec sleep -- nslookup nslookup whoami.{{session_namespace}}.svc.cluster.local
 ```
 
 > This gets the IP address of the Service from its DNS name. The first line is the IP address of the Kuberentes DNS server itself.
@@ -128,7 +128,7 @@ kubectl exec sleep -- nslookup nslookup whoami.{{session_name}}.svc.cluster.loca
 Now the Pods can communicate using DNS names:
 
 ```
-kubectl exec sleep -- curl -s http://whoami.{{session_name}}.svc.cluster.local
+kubectl exec sleep -- curl -s http://whoami.{{session_namespace}}.svc.cluster.local
 ```
 
 📋 Recreate the whoami Pod and the replacement will have a new IP address - but service resolution with DNS still works. 
@@ -159,9 +159,9 @@ kubectl get pods -o wide -l app=whoami
 The Service IP address doesn't change, so if clients cache that IP they'll still work. Now the Service routes traffic to the new Pod:
 
 ```
-kubectl exec sleep -- nslookup whoami.{{session_name}}.svc.cluster.local
+kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
 
-kubectl exec sleep -- curl -s http://whoami.{{session_name}}.svc.cluster.local
+kubectl exec sleep -- curl -s http://whoami.{{session_namespace}}.svc.cluster.local
 ```
 
 ## Understanding external Services
@@ -234,5 +234,5 @@ Every YAML spec for this lab adds a label `kubernetes.courselabs.co=services` .
 That makes it super easy to clean up, by deleting all those resources:
 
 ```
-kubectl delete pod,svc -l kubernetes.courselabs.co=services
+kubectl delete pod,svc,ing -l kubernetes.courselabs.co=services
 ```
