@@ -6,10 +6,6 @@ Every Pod has an IP address which other Pods in the cluster can reach, but that 
 
 Services and Pods are loosely-coupled: a Service finds target Pods using a [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 
-## API specs
-
-- [Service](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#service-v1-core)
-
 <details>
   <summary>YAML overview</summary>
 
@@ -62,11 +58,11 @@ spec:
 
 Start by creating some simple Pods from definitions which contain labels:
 
-* [whoami.yaml](specs/pods/whoami.yaml)
-* [sleep.yaml](specs/pods/sleep.yaml)
+* [whoami.yaml](specs/pods/whoami.yaml) ~/exercises/labs/pods/whoami-pod.yaml
+* [sleep.yaml](specs/pods/sleep.yaml) ~/exercises/labs/pods/sleep-pod.yaml
 
-```
-kubectl apply -f labs/services/specs/pods
+```execute-1
+kubectl apply -f  ~/exercises/labs/pods/sleep-pod.yaml -f  ~/exercises/labs/pods/whoami-pod.yaml
 ```
 
 > You can work with multiple objects and deploy multiple YAML manifests with Kubectl
@@ -76,7 +72,7 @@ kubectl apply -f labs/services/specs/pods
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl get pods -o wide --show-labels
 ```
 
@@ -96,13 +92,13 @@ Kubernetes provides different types of Service for internal and external access 
 
 * [whoami-clusterip.yaml](specs/services/whoami-clusterip.yaml) defines a ClusterIP service which routes traffic to the whoami Pod
 
-📋 Deploy the Service from `labs/services/specs/services/whoami-clusterip.yaml` and print its details.
+📋 Deploy the Service from `~/exercises/labs/services/spec` and print its details.
 
 <details>
   <summary>Not sure how?</summary>
 
 ```
-kubectl apply -f labs/services/specs/services/whoami-clusterip.yaml
+kubectl apply -f ~/exercises/labs/services/spec
 ```
 
 Print the details:
@@ -153,7 +149,7 @@ kubectl delete pods -l app=whoami
 Create a replacement Pod and check its IP address:
 
 ```
-kubectl apply -f labs/services/specs/pods
+kubectl apply -f ~/exercises/labs/services/specs/pods
 
 kubectl get pods -o wide -l app=whoami
 ```
@@ -174,27 +170,20 @@ There are two types of Service which can be accessed outside of the cluster: [Lo
 
 They both listen for traffic coming into the cluster and route it to Pods, but they work in different ways. LoadBalancers are easier to work with, but not every Kubernetes cluster supports them.
 
-> In this course we'll deploy both LoadBalancers and NodePorts for all our sample apps so you can follow along with your cluster.
+> In this course we'll deploy services with ClusterIPs and expose them through a common IP address called an Ingress.
 
 <details>
-  <summary>ℹ Here's why some clusters don't support LoadBalancers</summary>
+  <summary>ℹ What is an Ingress</summary>
 
-- LoadBalancer Services integrate with the platform they're running on to get a real IP address. In a managed Kubernetes service in the cloud you'll get a unique public IP address for every Service, integrated with a cloud load balancer to direct traffic to your nodes. In Docker Desktop the IP address will be `localhost`; in k3s it will be a local network address.
+An API object that manages external access to the services in a cluster, typically HTTP.
 
-- NodePorts don't need any external setup so they work in the same way on all Kubernetes clusters. Every node in the cluster listens on the specified port and forwards traffic to Pods. The external port number must be >= 30000 - a security feature so Kubernetes components don't need to run with elevated privileges on the node.
+Ingress may provide load balancing, SSL termination and name-based virtual hosting.
 
-Platform | LoadBalancer | NodePort 
---- | --- | --- |
-Docker Desktop | ✔ | ✔
-K3s  | ✔ | ✔
-K3d  | 🌓 | ✔
-AKS, EKS, GKE etc.  | ✔ | ✔
-Kind | ❌ | ✔
-Minikube | ❌  |  ✔
-Microk8s | ❌  |  ✔
-Bare-metal | ❌  |  ✔
+![Ingress](../images/ingress.svg)
 
-> If you don't have LoadBalancer support you can add it with [MetalLB](https://metallb.universe.tf/), but that's not in scope for this course :)
+An Ingress may be configured to give Services externally-reachable URLs, load balance traffic, terminate SSL / TLS, and offer name-based virtual hosting. An Ingress controller is responsible for fulfilling the Ingress, usually with a load balancer, though it may also configure your edge router or additional frontends to help handle the traffic.
+
+
 
 </details><br/>
 
@@ -202,51 +191,25 @@ Bare-metal | ❌  |  ✔
 
 There are two Service definitions to make the whoami app available outside the cluster:
 
-* [whoami-nodeport.yaml](specs/services/whoami-nodeport.yaml) - for clusters which don't support LoadBalancer Services 
-* [whoami-loadbalancer.yaml](specs/services/whoami-loadbalancer.yaml) - for clusters which do
-
-You can deploy both:
-
-```
-kubectl apply -f labs/services/specs/services/whoami-nodeport.yaml -f labs/services/specs/services/whoami-loadbalancer.yaml
+```editor:open-file
+file: ~/exercises/labs/services/specs/ingress/ingress.yaml.in
 ```
 
-📋 Print the details for the services - both have the label `app=whoami`.
+You can deploy with:
+
+```
+kubectl apply -f /exercises/labs/services/specs/ingress
+```
+
+📋 Print the details for the ingress - both have the label `app=whoami`.
 
 <details>
   <summary>Not sure how?</summary>
 
 ```
-kubectl get svc -l app=whoami
+kubectl get ing  whoami-ingress
 ```
-
 </details><br/>
-
-> If your cluster doesn't have LoadBalancer support, the `EXTERNAL-IP` field will stay at `<pending>` forever
-
-External Services **also** create a ClusterIP, so you can access them internally. 
-
-You always need to use the Service port for communication:
-
-```
-kubectl exec sleep -- curl -s http://whoami-lb:8080
-
-kubectl exec sleep -- curl -s http://whoami-np:8010
-```
-
-> The Services all have the same label selector, so they all direct traffic to the same Pod
-
-Now you can call the whoami app from your local machine:
-
-```
-# either
-curl http://localhost:8080
-
-# or
-curl http://localhost:30010
-```
-
-> If your cluster isn't running locally, use the node's IP address for NodePort access or the EXTERNAL-IP address field for the LoadBalancer
 
 ## Lab
 
@@ -261,7 +224,7 @@ Create new Services and whoami Pods to test these scenarios:
 
 What happens? How can you find the target Pods for a Service?
 
-> Stuck? Try [hints](hints.md) or check the [solution](solution.md).
+> Stuck? Try [hints](exercises/labs/services/solution/hints.md) or check the [solution](exercises/labs/services/solution/solution.md).
 
 ___
 ## Cleanup
