@@ -253,7 +253,7 @@ Mapping configuration in ConfigMap YAML works well and it means you can deploy y
 Create two new ConfigMaps to support the Deployment in 
 
 ```editor:open-file
-file: exercises/labscm/lab/deployment-lab.yaml) and set these values:
+file: exercises/labs/cm/lab/deployment-lab.yaml and set these values:
 ```
 
 - Environment variable `Configuration__Release=21.04-lab`
