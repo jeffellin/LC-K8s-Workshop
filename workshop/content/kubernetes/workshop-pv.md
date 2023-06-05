@@ -79,7 +79,7 @@ kubectl exec deploy/pi-proxy -- kill 1
 ```
 Repeatedly run the following query until you see a new pi proxy pod in a running state.
 
-```
+```execute-1
 kubectl get po -l app=pi-proxy
 ```
 
@@ -96,13 +96,13 @@ You can use it for data which is not permanent, but which you'd like to survive 
 The following spec uses an EmptyDir volume, mounting it to the `/tmp` directory
 
 ```editor:open-file
-file: ~/exercises/pvc/caching-proxu-emptydir/nginx.yaml
+file: ~/exercises/labs/pvc/caching-proxy-emptydir/nginx.yaml
 ```
 
 This is a change to the Pod spec, so you'll get a new Pod with a new empty directory volume:
 
 ```execute-1
-kubectl apply -f ~/exercises/pvc/caching-proxu-emptydir
+kubectl apply -f ~/exercises/labs/pvc/caching-proxy-emptydir
 ```
 ```execute-1
 kubectl wait --for=condition=Ready pod -l app=pi-proxy,storage=emptydir
@@ -149,7 +149,11 @@ You'll see a single StorageClass in Docker Desktop and k3d, but in a cloud servi
 
 You can create a PersistentVolumeClaim with a named StorageClass, or omit the class to use the default.
 
-- [caching-proxy-pvc/pvc.yaml](specs/caching-proxy-pvc/pvc.yaml) requests 100MB of storage, which a single node can mount for read-write access
+- `pvc.yaml`requests 1GB of storage, which a single node can mount for read-write access
+
+```editor:open-file
+file ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
+```
 
 ```execute-1
 kubectl apply -f ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
@@ -179,7 +183,7 @@ kubectl describe pvc pi-proxy-pvc
 Update the Nginx proxy to use the PVC: 
 
 ```editor:open-file
-file: ~/exercises/pvc/caching-proxu-emptydir/nginx.yaml
+file: ~/exercises/labs/pvc/caching-proxy-emptydir/nginx.yaml
 ```
 
 
