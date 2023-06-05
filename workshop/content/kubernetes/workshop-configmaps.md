@@ -109,7 +109,7 @@ You see the default configuration settings from the JSON file in the container i
   <summary>Not sure how?</summary>
 
 ```
-kubectl delete deployment cm-web
+kubectl delete deployment configurable
 ```
 
 </details><br />
@@ -149,7 +149,7 @@ kubectl exec deploy/configurable -- printenv | grep __
 
 ```
 # print the Service details:
-kubectl get ing cm-ingress
+kubectl get ing configurable-ingress
 ```
 
 </details><br />
@@ -254,12 +254,21 @@ Create two new ConfigMaps to support the Deployment in
 
 ```editor:open-file
 file: exercises/labscm/lab/deployment-lab.yaml) and set these values:
+```
 
 - Environment variable `Configuration__Release=21.04-lab`
 - JSON setting `Features.DarkMode=true`
 
-> Stuck? Try [hints](hints.md) or check the [solution](solution.md).
+<details>
+  <summary>Not sure how?</summary>
 
+Lab Hints
+
+You can **create** objects with Kubectl as well as applying them with YAML. The command follows the same syntax as `get` and `describe`, passing the type of object you want to use.
+
+And you can always add `--help` to the end of the command to get detailed help. That should guide you through here.
+
+</details><br />
 
 ## Cleanup
 
