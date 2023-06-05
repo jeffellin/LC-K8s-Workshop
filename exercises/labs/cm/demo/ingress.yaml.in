@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cm-ingress
+  name: configurable-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: cm-proxy
+            name: configurable
             port:
               number: 80
         path: /
@@ -20,13 +20,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cm-proxy
+  name: configurable
   labels:
-    app: cm-proxy
+    app: configurable
 spec:
   ports:
     - port: 80
       name: http
   selector:
-    app: cm-proxy
+    app: configurable
   type: ClusterIP

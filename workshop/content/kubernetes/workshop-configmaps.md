@@ -96,8 +96,6 @@ Defaults are built into the `appsettings.json` file inside the Docker image - ru
 ```
 kubectl apply -f ~/exercises/labs/cm/demo
 
-kubectl wait --for=condition=Ready pod configurable
-
 ```
 
 
