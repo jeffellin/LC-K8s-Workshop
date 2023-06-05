@@ -59,10 +59,10 @@ spec:
 Start by creating some simple Pods from definitions which contain labels:
 
 ```editor:open-file
-file:  ~/exercises/labs/services/specs/pods/whoami-pod.yaml
+file:  exercises/labs/services/specs/pods/whoami-pod.yaml
 ```
 ```editor:open-file
-file:  ~/exercises/labs/services/specs/pods/sleep-pod.yaml
+file:  exercises/labs/services/specs/pods/sleep-pod.yaml
 ```
 ```execute-1
 kubectl apply -f ~/exercises/labs/services/specs/pods
@@ -93,7 +93,11 @@ Kubernetes provides different types of Service for internal and external access 
 
 [ClusterIP](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/) is the default and it means the Service gets an IP address which is only accessible within the cluster - its for components to communicate internally.
 
-* [whoami-clusterip.yaml](specs/services/whoami-clusterip.yaml) defines a ClusterIP service which routes traffic to the whoami Pod
+```editor:open-file
+file: exercises/labs/services/specs/services/whoami-clusterip.yaml
+```
+
+defines a ClusterIP service which routes traffic to the whoami Pod
 
 📋 Deploy the Service from `~/exercises/labs/services/specs/services/` and print its details.
 
@@ -199,7 +203,7 @@ An Ingress may be configured to give Services externally-reachable URLs, load ba
 The following ingress routes all traffic destined for the specified hostname to be routed to the `whoami` service.
 
 ```editor:open-file
-file: ~/exercises/labs/services/specs/ingress/ingress.yaml
+file: exercises/labs/services/specs/ingress/ingress.yaml
 ```
 
 You can deploy with:
@@ -244,7 +248,7 @@ What happens? How can you find the target Pods for a Service?
 > Stuck? Try 
 
 ```editor:open-file
-file: ~/exercises/labs/services/solution/hints.md
+file: exercises/labs/services/solution/hints.md
 ```
 
 ___
