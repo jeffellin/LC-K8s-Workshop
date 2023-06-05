@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cm-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: cm.${SESSION_NAMESPACE}.${INGRESS_DOMAIN}
+    http:
+      paths:
+      - backend:
+          service:
+            name: cm-proxy
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cm-proxy
+  labels:
+    app: cm-proxy
+spec:
+  ports:
+    - port: 80
+      name: http
+  selector:
+    app: cm-proxy
+  type: ClusterIP

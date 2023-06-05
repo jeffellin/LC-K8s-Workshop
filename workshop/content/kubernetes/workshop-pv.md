@@ -152,7 +152,7 @@ You can create a PersistentVolumeClaim with a named StorageClass, or omit the cl
 - `pvc.yaml`requests 1GB of storage, which a single node can mount for read-write access
 
 ```editor:open-file
-file ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
+fail: ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
 ```
 
 ```execute-1
@@ -206,7 +206,7 @@ The PVC starts off empty. Refresh the app and you'll see the `/tmp` folder getti
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 # force the container to exit
 kubectl exec deploy/pi-proxy -- kill 1
 
@@ -215,7 +215,7 @@ kubectl get pods -l app=pi-proxy,storage=pvc
 kubectl exec deploy/pi-proxy -- ls /tmp
 ```
 
-```
+```execute-1
 # force a rollout to replace the Pod
 kubectl rollout restart deploy/pi-proxy
 

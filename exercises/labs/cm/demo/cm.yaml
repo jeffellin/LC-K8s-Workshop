@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configurable
+  labels:
+    app: configurable
+    kubernetes.courselabs.co: configmaps
+spec:
+  selector:
+    matchLabels:
+      app: configurable
+  template:
+    metadata:
+      labels:
+        app: configurable
+    spec:
+      containers:
+        - image: sixeyed/configurable:21.04
+          name: configurable
+          ports:
+            - containerPort: 80
+              name: http
