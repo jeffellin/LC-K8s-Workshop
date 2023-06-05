@@ -58,11 +58,11 @@ spec:
 
 Start by creating some simple Pods from definitions which contain labels:
 
-* [whoami.yaml](specs/pods/whoami.yaml) ~/exercises/labs/pods/whoami-pod.yaml
-* [sleep.yaml](specs/pods/sleep.yaml) ~/exercises/labs/pods/sleep-pod.yaml
+* [whoami.yaml](specs/pods/whoami.yaml) ~/exercises/labs/services/specs/pods/whoami-pod.yaml
+* [sleep.yaml](specs/pods/sleep.yaml) ~/exercises/labs/services/specs/pods/sleep-pod.yaml
 
 ```execute-1
-kubectl apply -f  ~/exercises/labs/pods/sleep-pod.yaml -f  ~/exercises/labs/pods/whoami-pod.yaml
+kubectl apply -f ~/exercises/labs/services/specs/pods
 ```
 
 > You can work with multiple objects and deploy multiple YAML manifests with Kubectl
@@ -81,7 +81,7 @@ kubectl get pods -o wide --show-labels
 The Pod name has no affect on networking, Pods can't find each other by name:
 
 ```
-kubectl exec sleep -- nslookup whoami
+kubectl exec sleep -- nslookup whoami.{{session_name}}.svc.cluster.local
 ```
 
 ## Deploy an internal Service
@@ -92,13 +92,13 @@ Kubernetes provides different types of Service for internal and external access 
 
 * [whoami-clusterip.yaml](specs/services/whoami-clusterip.yaml) defines a ClusterIP service which routes traffic to the whoami Pod
 
-📋 Deploy the Service from `~/exercises/labs/services/specs/services` and print its details.
+📋 Deploy the Service from `~/exercises/labs/services/specs/services/` and print its details.
 
 <details>
   <summary>Not sure how?</summary>
 
 ```
-kubectl apply -f ~/exercises/labs/services/specs/services
+ kubectl apply -f ~/exercises/labs/services/specs/services/
 ```
 
 Print the details:
