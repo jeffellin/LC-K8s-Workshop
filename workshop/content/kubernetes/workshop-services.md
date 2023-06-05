@@ -92,13 +92,13 @@ Kubernetes provides different types of Service for internal and external access 
 
 * [whoami-clusterip.yaml](specs/services/whoami-clusterip.yaml) defines a ClusterIP service which routes traffic to the whoami Pod
 
-📋 Deploy the Service from `~/exercises/labs/services/spec` and print its details.
+📋 Deploy the Service from `~/exercises/labs/services/specs/services` and print its details.
 
 <details>
   <summary>Not sure how?</summary>
 
 ```
-kubectl apply -f ~/exercises/labs/services/spec
+kubectl apply -f ~/exercises/labs/services/specs/services
 ```
 
 Print the details:
@@ -120,7 +120,7 @@ The Service has its own IP address, and that is static for the life of the Servi
 Kubernetes runs a DNS server inside the cluster and every Service gets an entry, linking the IP address to the Service name.
 
 ```
-kubectl exec sleep -- nslookup whoami
+kubectl exec sleep -- nslookup nslookup whoami.{{session_name}}.svc.cluster.local
 ```
 
 > This gets the IP address of the Service from its DNS name. The first line is the IP address of the Kuberentes DNS server itself.
@@ -128,7 +128,7 @@ kubectl exec sleep -- nslookup whoami
 Now the Pods can communicate using DNS names:
 
 ```
-kubectl exec sleep -- curl -s http://whoami
+kubectl exec sleep -- curl -s http://whoami.{{session_name}}.svc.cluster.local
 ```
 
 📋 Recreate the whoami Pod and the replacement will have a new IP address - but service resolution with DNS still works. 
@@ -156,12 +156,12 @@ kubectl get pods -o wide -l app=whoami
 
 </details><br/>
 
-The Service IP address doesn't changed, so if clients cache that IP they'll still work. Now the Service routes traffic to the new Pod:
+The Service IP address doesn't change, so if clients cache that IP they'll still work. Now the Service routes traffic to the new Pod:
 
 ```
-kubectl exec sleep -- nslookup whoami
+kubectl exec sleep -- nslookup whoami.{{session_name}}.svc.cluster.local
 
-kubectl exec sleep -- curl -s http://whoami
+kubectl exec sleep -- curl -s http://whoami.{{session_name}}.svc.cluster.local
 ```
 
 ## Understanding external Services
@@ -192,13 +192,13 @@ An Ingress may be configured to give Services externally-reachable URLs, load ba
 There are two Service definitions to make the whoami app available outside the cluster:
 
 ```editor:open-file
-file: ~/exercises/labs/services/specs/ingress/ingress.yaml.in
+file: ~/exercises/labs/services/specs/ingress/ingress.yaml
 ```
 
 You can deploy with:
 
 ```
-kubectl apply -f /exercises/labs/services/specs/ingress
+kubectl apply -f ~/exercises/labs/services/specs/ingress
 ```
 
 📋 Print the details for the ingress - both have the label `app=whoami`.
