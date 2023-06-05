@@ -6,10 +6,6 @@ Storage in Kubernetes is pluggable so it supports different types - from local d
 
 Those details are kept away from the application model using an abstraction - the [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#introduction), which an app uses to request storage.
 
-## API specs
-
-- [PersistentVolumeClaim](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#persistentvolumeclaim-v1-core)
-
 <details>
   <summary>YAML overview</summary>
 
@@ -26,7 +22,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100Mi
+      storage: 1Gi
 ```
 
 As with ConfigMaps and Secrets, you use the PVC name to reference a volume in your Pod spec. The PVC spec defines its requirements:
@@ -61,12 +57,9 @@ kubectl apply -f ~/exercises/labs/pvc/pi
 
 
 
-http://pi.{{session_namespace}}.{{ingress_domain}}
 
-> Browse to http://localhost:30010/pi?dp=30000 or http://localhost:8010/pi?dp=30000 you'll see it takes over a second to calculate the response and send it
 
-```
-curl http://localhost:300010
+> Browse to http://pi.{{session_namespace}}.{{ingress_domain}}?dp=30000 you'll see it takes over a second to calculate the response and send it
 
 📋 Refresh and the response will be instant - check the response cache in Nginx, you can see it in the `/tmp` folder.
 
@@ -83,7 +76,10 @@ Now stop the container process, which forces a Pod restart:
 
 ```execute-1
 kubectl exec deploy/pi-proxy -- kill 1
+```
+Repeatedly run the following query until you see a new pi proxy pod in a running state.
 
+```
 kubectl get po -l app=pi-proxy
 ```
 
@@ -97,13 +93,18 @@ Volumes mount storage into the container filesystem from an outside source.The s
 
 You can use it for data which is not permanent, but which you'd like to survive a restart. It's perfect for keeping a local cache of data.
 
-- [caching-proxy-emptydir/nginx.yaml](specs/caching-proxy-emptydir/nginx.yaml) - uses an EmptyDir volume, mounting it to the `/tmp` directory
+The following spec uses an EmptyDir volume, mounting it to the `/tmp` directory
+
+```editor:open-file
+file: ~/exercises/pvc/caching-proxu-emptydir/nginx.yaml
+```
 
 This is a change to the Pod spec, so you'll get a new Pod with a new empty directory volume:
 
 ```execute-1
-kubectl apply -f labs/persistentvolumes/specs/caching-proxy-emptydir
-
+kubectl apply -f ~/exercises/pvc/caching-proxu-emptydir
+```
+```execute-1
 kubectl wait --for=condition=Ready pod -l app=pi-proxy,storage=emptydir
 ```
 
@@ -118,9 +119,11 @@ Refresh your page to see the Pi calculation happen again - the result gets cache
 
 ```execute-1
 kubectl exec deploy/pi-proxy -- kill 1
-
+```
+```execute-1
 kubectl get pods -l app=pi-proxy,storage=emptydir 
-
+```
+```execute-1
 kubectl exec deploy/pi-proxy -- ls /tmp
 ```
 
@@ -173,14 +176,20 @@ kubectl describe pvc pi-proxy-pvc
 
 </details><br />
 
+Update the Nginx proxy to use the PVC: 
 
-This [Deployment spec](specs/caching-proxy-pvc/nginx.yaml) updates the Nginx proxy to use the PVC:
-
+```editor:open-file
+file: ~/exercises/pvc/caching-proxu-emptydir/nginx.yaml
 ```
+
+
+```execute-1
 kubectl apply -f ~/exercises/labs/pvc/caching-proxy-pvc/
-
+```
+```execute-1
 kubectl wait --for=condition=Ready pod -l app=pi-proxy,storage=pvc
-
+```
+```execute-1
 kubectl get pvc
 ```
 
@@ -221,5 +230,5 @@ Try the app again and the new Pod still serves the response from the cache, so i
 ## Cleanup
 
 ```execute-1
-kubectl delete all,cm,pvc,pv -l kubernetes.courselabs.co=persistentvolumes
+kubectl delete all,cm,pvc -l kubernetes.courselabs.co=persistentvolumes
 ```
