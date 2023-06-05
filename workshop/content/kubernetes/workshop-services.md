@@ -58,9 +58,12 @@ spec:
 
 Start by creating some simple Pods from definitions which contain labels:
 
-* [whoami.yaml](specs/pods/whoami.yaml) ~/exercises/labs/services/specs/pods/whoami-pod.yaml
-* [sleep.yaml](specs/pods/sleep.yaml) ~/exercises/labs/services/specs/pods/sleep-pod.yaml
-
+```editor:open-file
+file:  ~/exercises/labs/services/specs/pods/whoami-pod.yaml
+```
+```editor:open-file
+file:  ~/exercises/labs/services/specs/pods/sleep-pod.yaml
+```
 ```execute-1
 kubectl apply -f ~/exercises/labs/services/specs/pods
 ```
@@ -80,7 +83,7 @@ kubectl get pods -o wide --show-labels
 
 The Pod name has no affect on networking, Pods can't find each other by name:
 
-```
+```execute-1
 kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
 ```
 
@@ -97,15 +100,16 @@ Kubernetes provides different types of Service for internal and external access 
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
  kubectl apply -f ~/exercises/labs/services/specs/services/
 ```
 
 Print the details:
 
-```
+```execute-1
 kubectl get service whoami
-
+```
+```execute-1
 kubectl describe svc whoami
 ```
 
@@ -119,7 +123,7 @@ The Service has its own IP address, and that is static for the life of the Servi
 
 Kubernetes runs a DNS server inside the cluster and every Service gets an entry, linking the IP address to the Service name.
 
-```
+```execute-1
 kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
 ```
 
@@ -127,7 +131,7 @@ kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
 
 Now the Pods can communicate using DNS names:
 
-```
+```execute-1
 kubectl exec sleep -- curl -s http://whoami.{{session_namespace}}.svc.cluster.local
 ```
 
@@ -138,9 +142,10 @@ kubectl exec sleep -- curl -s http://whoami.{{session_namespace}}.svc.cluster.lo
 
 Check the current IP address then delete the Pod:
 
-```
+```execute-1
 kubectl get pods -o wide -l app=whoami
-
+```
+```execute-1
 kubectl delete pods -l app=whoami
 ```
 
@@ -148,9 +153,10 @@ kubectl delete pods -l app=whoami
 
 Create a replacement Pod and check its IP address:
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/services/specs/pods
-
+```
+```execute-1
 kubectl get pods -o wide -l app=whoami
 ```
 
@@ -158,9 +164,10 @@ kubectl get pods -o wide -l app=whoami
 
 The Service IP address doesn't change, so if clients cache that IP they'll still work. Now the Service routes traffic to the new Pod:
 
-```
+```execute-1
 kubectl exec sleep -- nslookup whoami.{{session_namespace}}.svc.cluster.local
-
+```
+```execute-1
 kubectl exec sleep -- curl -s http://whoami.{{session_namespace}}.svc.cluster.local
 ```
 
@@ -197,7 +204,7 @@ file: ~/exercises/labs/services/specs/ingress/ingress.yaml
 
 You can deploy with:
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/services/specs/ingress
 ```
 
@@ -206,7 +213,7 @@ kubectl apply -f ~/exercises/labs/services/specs/ingress
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl get ing  whoami-ingress
 ```
 </details><br/>
@@ -216,7 +223,7 @@ kubectl get ing  whoami-ingress
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 curl -s http://whoami.{{session_namespace}}.{{ingress_domain}}
 ```
 </details><br/>
@@ -234,7 +241,11 @@ Create new Services and whoami Pods to test these scenarios:
 
 What happens? How can you find the target Pods for a Service?
 
-> Stuck? Try <a href="exercises/labs/services/solution/hints.md" target="_blank">hints</a> or check the [solution](exercises/labs/services/solution/solution.md).
+> Stuck? Try 
+
+```editor:open-file
+file: ~/exercises/labs/services/solution/hints.md
+```
 
 ___
 ## Cleanup
@@ -243,6 +254,6 @@ Every YAML spec for this lab adds a label `kubernetes.courselabs.co=services` .
 
 That makes it super easy to clean up, by deleting all those resources:
 
-```
+```execute-1
 kubectl delete pod,svc,ing -l kubernetes.courselabs.co=services
 ```
