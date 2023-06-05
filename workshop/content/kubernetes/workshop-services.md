@@ -59,10 +59,10 @@ spec:
 Start by creating some simple Pods from definitions which contain labels:
 
 ```editor:open-file
-file:  exercises/labs/services/specs/pods/whoami-pod.yaml
+file: exercises/labs/services/specs/pods/whoami-pod.yaml
 ```
 ```editor:open-file
-file:  exercises/labs/services/specs/pods/sleep-pod.yaml
+file: exercises/labs/services/specs/pods/sleep-pod.yaml
 ```
 ```execute-1
 kubectl apply -f ~/exercises/labs/services/specs/pods
