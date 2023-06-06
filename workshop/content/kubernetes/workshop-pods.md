@@ -10,10 +10,6 @@ Pods are considered to be ephemeral
 
 
 
-## API specs
-
-- [Pod](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#pod-v1-core)
-
 <details>
   <summary>YAML overview</summary>
 
@@ -98,7 +94,7 @@ In a production cluster the Pod could be running on any node. You manage it usin
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl logs whoami
 ```
 </details><br/>

@@ -152,7 +152,7 @@ You can create a PersistentVolumeClaim with a named StorageClass, or omit the cl
 - `pvc.yaml`requests 1GB of storage, which a single node can mount for read-write access
 
 ```editor:open-file
-fail: ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
+file: ~/exercises/labs/pvc/caching-proxy-pvc/pvc.yaml
 ```
 
 ```execute-1
@@ -199,6 +199,17 @@ kubectl get pvc
 
 > Now the PVC is bound and the PersistentVolume exists with the requested size and access mode in the PVC
 
+How would you display info about the PersistentVolume that is associated with the PersistentVolumeClaim.
+
+<details>
+  <summary>Not sure how?</summary>
+
+  ```execute-1
+  kubectl get pv 
+  ```
+</details>
+
+
 The PVC starts off empty. Refresh the app and you'll see the `/tmp` folder getting filled. 
 
 📋 Restart and then replace the Pod and confirm the data in the PVC survives both.
@@ -209,18 +220,22 @@ The PVC starts off empty. Refresh the app and you'll see the `/tmp` folder getti
 ```execute-1
 # force the container to exit
 kubectl exec deploy/pi-proxy -- kill 1
-
+```
+```execute-1
 kubectl get pods -l app=pi-proxy,storage=pvc
-
+```
+```execute-1
 kubectl exec deploy/pi-proxy -- ls /tmp
 ```
 
 ```execute-1
 # force a rollout to replace the Pod
 kubectl rollout restart deploy/pi-proxy
-
+```
+```execute-1
 kubectl get pods -l app=pi-proxy,storage=pvc
-
+```
+```execute-1
 kubectl exec deploy/pi-proxy -- ls /tmp
 ```
 

@@ -6,10 +6,6 @@ Instead you'll use a [controller](https://kubernetes.io/docs/concepts/architectu
 
 Deployments use a template to create Pods, and a label selector to identify the Pods they own.
 
-## API specs
-
-- [Deployment](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#deployment-v1-apps)
-
 <details>
   <summary>YAML overview</summary>
 
