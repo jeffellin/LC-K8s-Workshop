@@ -1,13 +1,17 @@
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
-  name: test
+  name: sandbox
 spec:
   portal:
+    password: VZJune
     registration:
       type: anonymous
+    sessions:
+      maximum: 30
   workshops:
-  - name: lab-markdown-sample
-    capacity: 1
-    expires: 60m
-    orphaned: 5m
+  - name: kubernetes-intro
+    capacity: 30
+    reserved: 5
+    expires: 180m
+    orphaned: 180m
