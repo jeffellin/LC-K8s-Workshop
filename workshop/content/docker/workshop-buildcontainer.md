@@ -52,13 +52,13 @@ cd ~/exercises/flask-docker
 ```
 
 ```execute-1
-docker build -t flask-docker
+docker build -t flask-docker .
 ```
 ```execute-1
-docker run -p 8080:5000 flask-docker
+docker run -p 8081:5000 flask-docker
 ```
 
 
 ```execute-2
-curl http://localhost:8080
+curl http://localhost:8081
 ```
