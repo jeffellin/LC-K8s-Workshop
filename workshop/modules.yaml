@@ -6,7 +6,7 @@ modules:
     workshop-virtualmachines:
         name: What is a Virtual Machine...
     docker/workshop-containers:
-        name: What is a Docker Container
+        name: Infrastructure as Code
     docker/workshop-runningcontainer:
         name: Running your first Container
     docker/workshop-buildcontainer:

@@ -1,5 +1,3 @@
-## Infrastructure as Code
-
 Modern software applications have become much more complex, In many cases, applications have many different tiers such as database, web, service, messaging, etc. The popularity of micro services has further multiplied the number of pieces within a production solution.
 The idea of Infrastructure as Code attempts to tackle this problem.
 
@@ -11,14 +9,6 @@ If the QA person is lucky, the developer has adequately documented the software�
 Infrastructure as code means that the steps required to build an environment are enumerated in a file that can be run in a repeatable fashion and can be stored and versioned in a source control repository like any other piece of code.
 
 ## Containers
-
-Container deployments provide an additional layer of abstraction of an individual service. It helps eliminate the “compatibility matrix from hell.” What version of Java is required, which python libraries, etc.
-
-One common misconception of containers: people sometimes describe and dismiss Docker containers as virtualization within virtualization or “doubly virtualized,” the implication being that performance suffers. This doesn’t actually mean what most people think it means. Traditional virtualization uses a hypervisor to carve out a slice of available hardware. On top of that slice, a full operating system is run. Containers assign resources to protected areas of an existing operating system. Two containers on the same host are shielded from each other by kernel name spacing but the resources running in that container have the same access to the resources on the host. Issuing the top command on a Docker host will reveal all the processes on the machine including those running inside a container.
-
-If a container is not running an application, it does not consume any resources. When launching a container, it will start almost instantaneously as the entire operating system is not loaded. When shutting down a container, the process running inside the container is simply terminated. In contrast, a virtual machine will consume resources whenever it is running, even if it isn’t doing anything. It is conceivable to share a single docker host across multiple applications thus getting better utilization of virtual hardware.
-
-Due to the design of containers, they each can have their own requirements, Java Version, Libraries, etc. without worrying about dependency clash. The developer can specify which versions they support and don’t have to worry about end users installing the wrong dependencies.
 
 Containers are as easy to construct as writing a script. Consider the following Dockerfile that runs a micro service.
 
