@@ -10,7 +10,7 @@ Objects like Services and Pods are loosely-coupled, so it's easy to break your a
 
 This one is all lab :) Try running this app - and make whatever changes you need to get the app running, so the Pod is healthy with no restarts.
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/troubleshooting/specs/pi-failing
 ```
 
@@ -26,5 +26,5 @@ ___
 When you're done you can remove all the objects:
 
 ```
-kubectl delete all -l kubernetes.courselabs.co=troubleshooting
+kubectl delete pod,svc,ingress -l kubernetes.courselabs.co=troubleshooting
 ```
