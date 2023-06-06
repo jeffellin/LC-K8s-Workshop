@@ -11,10 +11,10 @@ Objects like Services and Pods are loosely-coupled, so it's easy to break your a
 This one is all lab :) Try running this app - and make whatever changes you need to get the app running, so the Pod is healthy with no restarts.
 
 ```
-kubectl apply -f labs/troubleshooting/specs/pi-failing
+kubectl apply -f ~/exercises/labs/troubleshooting/specs/pi-failing
 ```
 
-> Your goal is to browse to http://localhost:8020 or http://localhost:30020 and see the response from the Pi app
+> Your goal is to browse to http://pi-failing.{{session_namespace}}.{{ingress_domain}} and see the response from the Pi app
 
 Don't go straight to the solution! These are the sort of issues you will get all the time, so it's good to start working through the steps to diagnose problems.
 
