@@ -93,7 +93,7 @@ The demo app for this lab has the logic to merge config from multiple sources.
 
 Defaults are built into the `appsettings.json` file inside the Docker image - run a Pod with no config applied to see the defaults:
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/cm/demo
 
 ```
@@ -108,7 +108,7 @@ You see the default configuration settings from the JSON file in the container i
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl delete deployment configurable
 ```
 
@@ -128,7 +128,7 @@ adds a config setting with an environment variable in the template Pod spec. Try
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/cm/demo
 ```
 
@@ -136,7 +136,7 @@ kubectl apply -f ~/exercises/labs/cm/demo
 
 You can check the environment variable is set by running `printenv` inside the Pod container:
 
-```
+```execute-1
 kubectl exec deploy/configurable -- printenv | grep __
 ```
 
@@ -147,7 +147,7 @@ kubectl exec deploy/configurable -- printenv | grep __
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 # print the Service details:
 kubectl get ing configurable-ingress
 ```
@@ -171,7 +171,7 @@ file: exercises/labs/cm/config-env/deployment-env.yaml
 ```
 
 
-```
+```execute-1
 kubectl apply -f ~/exercises/labs/cm/config-env/
 ```
 
@@ -182,7 +182,7 @@ kubectl apply -f ~/exercises/labs/cm/config-env/
 <details>
   <summary>Not sure how?</summary>
 
-```
+```execute-1
 kubectl exec deploy/configurable -- printenv | grep __
 ```
 
@@ -238,9 +238,10 @@ kubectl exec deploy/configurable -- cat /app/config/override.json
 
 Something's not quite right though - the release setting is still coming from the environment variable:
 
-```
+```execute-1
 kubectl exec deploy/configurable -- cat /app/config/override.json
-
+```
+```execute-1
 kubectl exec deploy/configurable -- printenv | grep __
 ```
 
@@ -253,7 +254,7 @@ Mapping configuration in ConfigMap YAML works well and it means you can deploy y
 Create two new ConfigMaps to support the Deployment in 
 
 ```editor:open-file
-file: exercises/labs/cm/lab/deployment-lab.yaml and set these values:
+file: exercises/labs/cm/lab/deployment-lab.yaml
 ```
 
 - Environment variable `Configuration__Release=21.04-lab`
@@ -274,6 +275,6 @@ And you can always add `--help` to the end of the command to get detailed help. 
 
 Cleanup by removing objects with this lab's label:
 
-```
+```execute-1
 kubectl delete configmap,deploy,svc,pod -l kubernetes.courselabs.co=configmaps
 ```
