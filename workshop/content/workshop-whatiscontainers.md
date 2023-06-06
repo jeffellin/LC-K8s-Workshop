@@ -15,11 +15,11 @@ Why are containers useful?
 
 ## Containers vs Virtual Machines
 
-![VM](../images/container-vs-virtual-machine.png)
+![VM](images/container-vs-virtual-machine.png)
 
 ## Containers
 
-![Containers](../images/docker-containerized-appliction-blue-border_2.webp)
+![Containers](images/docker-containerized-appliction-blue-border_2.webp)
 
 Container deployments provide an additional layer of abstraction of an individual service. It helps eliminate the “compatibility matrix from hell.” What version of Java is required, which python libraries, etc.
 
